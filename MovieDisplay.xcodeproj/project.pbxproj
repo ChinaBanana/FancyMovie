@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8511EF2B1F67CF6600485EDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511EF2A1F67CF6600485EDB /* AppDelegate.swift */; };
+		8511EF2D1F67CF6600485EDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511EF2C1F67CF6600485EDB /* ViewController.swift */; };
+		8511EF301F67CF6600485EDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8511EF2E1F67CF6600485EDB /* Main.storyboard */; };
+		8511EF321F67CF6600485EDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8511EF311F67CF6600485EDB /* Assets.xcassets */; };
+		8511EF351F67CF6600485EDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8511EF331F67CF6600485EDB /* LaunchScreen.storyboard */; };
+		8511EF401F67CF6700485EDB /* MovieDisplayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511EF3F1F67CF6700485EDB /* MovieDisplayTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8511EF3C1F67CF6700485EDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8511EF1F1F67CF6600485EDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8511EF261F67CF6600485EDB;
+			remoteInfo = MovieDisplay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8511EF271F67CF6600485EDB /* MovieDisplay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieDisplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8511EF2A1F67CF6600485EDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8511EF2C1F67CF6600485EDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8511EF2F1F67CF6600485EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8511EF311F67CF6600485EDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8511EF341F67CF6600485EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8511EF361F67CF6600485EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8511EF3B1F67CF6700485EDB /* MovieDisplayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieDisplayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8511EF3F1F67CF6700485EDB /* MovieDisplayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDisplayTests.swift; sourceTree = "<group>"; };
+		8511EF411F67CF6700485EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8511EF241F67CF6600485EDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8511EF381F67CF6700485EDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8511EF1E1F67CF6600485EDB = {
+			isa = PBXGroup;
+			children = (
+				8511EF291F67CF6600485EDB /* MovieDisplay */,
+				8511EF3E1F67CF6700485EDB /* MovieDisplayTests */,
+				8511EF281F67CF6600485EDB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8511EF281F67CF6600485EDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8511EF271F67CF6600485EDB /* MovieDisplay.app */,
+				8511EF3B1F67CF6700485EDB /* MovieDisplayTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8511EF291F67CF6600485EDB /* MovieDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				8511EF2A1F67CF6600485EDB /* AppDelegate.swift */,
+				8511EF2C1F67CF6600485EDB /* ViewController.swift */,
+				8511EF2E1F67CF6600485EDB /* Main.storyboard */,
+				8511EF311F67CF6600485EDB /* Assets.xcassets */,
+				8511EF331F67CF6600485EDB /* LaunchScreen.storyboard */,
+				8511EF361F67CF6600485EDB /* Info.plist */,
+			);
+			path = MovieDisplay;
+			sourceTree = "<group>";
+		};
+		8511EF3E1F67CF6700485EDB /* MovieDisplayTests */ = {
+			isa = PBXGroup;
+			children = (
+				8511EF3F1F67CF6700485EDB /* MovieDisplayTests.swift */,
+				8511EF411F67CF6700485EDB /* Info.plist */,
+			);
+			path = MovieDisplayTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8511EF261F67CF6600485EDB /* MovieDisplay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8511EF441F67CF6700485EDB /* Build configuration list for PBXNativeTarget "MovieDisplay" */;
+			buildPhases = (
+				8511EF231F67CF6600485EDB /* Sources */,
+				8511EF241F67CF6600485EDB /* Frameworks */,
+				8511EF251F67CF6600485EDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MovieDisplay;
+			productName = MovieDisplay;
+			productReference = 8511EF271F67CF6600485EDB /* MovieDisplay.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8511EF3A1F67CF6700485EDB /* MovieDisplayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8511EF471F67CF6700485EDB /* Build configuration list for PBXNativeTarget "MovieDisplayTests" */;
+			buildPhases = (
+				8511EF371F67CF6700485EDB /* Sources */,
+				8511EF381F67CF6700485EDB /* Frameworks */,
+				8511EF391F67CF6700485EDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8511EF3D1F67CF6700485EDB /* PBXTargetDependency */,
+			);
+			name = MovieDisplayTests;
+			productName = MovieDisplayTests;
+			productReference = 8511EF3B1F67CF6700485EDB /* MovieDisplayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8511EF1F1F67CF6600485EDB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = cyt;
+				TargetAttributes = {
+					8511EF261F67CF6600485EDB = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = A9U23ZY9CQ;
+						ProvisioningStyle = Automatic;
+					};
+					8511EF3A1F67CF6700485EDB = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = A9U23ZY9CQ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8511EF261F67CF6600485EDB;
+					};
+				};
+			};
+			buildConfigurationList = 8511EF221F67CF6600485EDB /* Build configuration list for PBXProject "MovieDisplay" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8511EF1E1F67CF6600485EDB;
+			productRefGroup = 8511EF281F67CF6600485EDB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8511EF261F67CF6600485EDB /* MovieDisplay */,
+				8511EF3A1F67CF6700485EDB /* MovieDisplayTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8511EF251F67CF6600485EDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8511EF351F67CF6600485EDB /* LaunchScreen.storyboard in Resources */,
+				8511EF321F67CF6600485EDB /* Assets.xcassets in Resources */,
+				8511EF301F67CF6600485EDB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8511EF391F67CF6700485EDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8511EF231F67CF6600485EDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8511EF2D1F67CF6600485EDB /* ViewController.swift in Sources */,
+				8511EF2B1F67CF6600485EDB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8511EF371F67CF6700485EDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8511EF401F67CF6700485EDB /* MovieDisplayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8511EF3D1F67CF6700485EDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8511EF261F67CF6600485EDB /* MovieDisplay */;
+			targetProxy = 8511EF3C1F67CF6700485EDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8511EF2E1F67CF6600485EDB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8511EF2F1F67CF6600485EDB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8511EF331F67CF6600485EDB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8511EF341F67CF6600485EDB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8511EF421F67CF6700485EDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8511EF431F67CF6700485EDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8511EF451F67CF6700485EDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A9U23ZY9CQ;
+				INFOPLIST_FILE = MovieDisplay/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoaleeo.MovieDisplay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		8511EF461F67CF6700485EDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A9U23ZY9CQ;
+				INFOPLIST_FILE = MovieDisplay/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoaleeo.MovieDisplay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		8511EF481F67CF6700485EDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = A9U23ZY9CQ;
+				INFOPLIST_FILE = MovieDisplayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoaleeo.MovieDisplayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieDisplay.app/MovieDisplay";
+			};
+			name = Debug;
+		};
+		8511EF491F67CF6700485EDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = A9U23ZY9CQ;
+				INFOPLIST_FILE = MovieDisplayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoaleeo.MovieDisplayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieDisplay.app/MovieDisplay";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8511EF221F67CF6600485EDB /* Build configuration list for PBXProject "MovieDisplay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8511EF421F67CF6700485EDB /* Debug */,
+				8511EF431F67CF6700485EDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8511EF441F67CF6700485EDB /* Build configuration list for PBXNativeTarget "MovieDisplay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8511EF451F67CF6700485EDB /* Debug */,
+				8511EF461F67CF6700485EDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8511EF471F67CF6700485EDB /* Build configuration list for PBXNativeTarget "MovieDisplayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8511EF481F67CF6700485EDB /* Debug */,
+				8511EF491F67CF6700485EDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8511EF1F1F67CF6600485EDB /* Project object */;
+}
