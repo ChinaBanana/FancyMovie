@@ -8,6 +8,8 @@
 
 import Foundation
 
-protocol BaseModel:NSProxy {
-    static func modelArrOfDic(_ modelDic:Dictionary<String, Any>?) -> Array<self.class>
+protocol BaseModel {
+    init(_ dic:Dictionary<String, Any>)
+    static func modelArrOfDic(_ modelDic:Dictionary<String, Any>?) -> Array<BaseModel>
+    static func modelArrOfDicArray(_ dicArray:Array<Dictionary<String, Any>>) -> Array<BaseModel>
 }

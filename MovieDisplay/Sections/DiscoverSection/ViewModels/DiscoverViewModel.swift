@@ -11,15 +11,17 @@ import RxSwift
 
 class DiscoverViewModel {
     
+    //
     enum ReloadView {
         case CollectionView
-        case TableView(Int)
+        case TableView
     }
     
     let disposeBag = DisposeBag.init()
     let reloadSubject = PublishSubject<ReloadView>()
     
-    var cycleItems:Array<MovieItem> = [MovieItem]()
+    var cycleItems = [BaseModel]()
+    var cellList = [DiscoverCellItem]()
     
     init() {
         APIService.discoverCycleSubject.subscribe { (event) in
@@ -37,10 +39,34 @@ class DiscoverViewModel {
                 break
             }
         }.addDisposableTo(disposeBag)
-        requestDiscover(0)
+        
+        Observable.zip(APIService.popularMovieSubjcet, APIService.popularPeopleSubject, APIService.playingMovieSubject, APIService.upcomingMovieSubject, APIService.topRatedMovieSubject).subscribe { (event) in
+            switch event {
+            case .next(let element):
+                self.cellList.append(DiscoverCellItem.init("Popular Movies", list: element.0))
+                self.cellList.append(DiscoverCellItem.init("Popular People", list: element.1))
+                self.cellList.append(DiscoverCellItem.init("Now Playing", list: element.2))
+                self.cellList.append(DiscoverCellItem.init("Upcoming", list: element.3))
+                self.cellList.append(DiscoverCellItem.init("Top Rated", list: element.4))
+                self.reloadSubject.onNext(ReloadView.TableView)
+                break
+            case .error(let error):
+                debugPrint(error)
+                break
+            case .completed:
+                break
+            }
+        }.addDisposableTo(disposeBag)
+        
+        APIService.request(.discover)
+        APIService.request(.popularMovie)
+        APIService.request(.popularPeople)
+        APIService.request(.upcomingMovie)
+        APIService.request(.topRatedMovie)
+        APIService.request(.playingMovie)
     }
     
     func requestDiscover(_ page:Int) -> () {
-        APIService.requestDiscover()
+        
     }
 }

@@ -23,9 +23,12 @@ class APIService {
     static let provider = MoyaProvider<API>.init()
     static let disposeBag = DisposeBag.init()
     
-    static let discoverCycleSubject = PublishSubject<Array<MovieItem>>()
-    static let popularMovieSubjcet = PublishSubject<Array<MovieItem>>()
-    static let popularPeopleSubject = PublishSubject<Array<MovieItem>>()
+    static let discoverCycleSubject = PublishSubject<Array<BaseModel>>()
+    static let popularMovieSubjcet = PublishSubject<Array<BaseModel>>()
+    static let popularPeopleSubject = PublishSubject<Array<BaseModel>>()
+    static let topRatedMovieSubject = PublishSubject<Array<BaseModel>>()
+    static let upcomingMovieSubject = PublishSubject<Array<BaseModel>>()
+    static let playingMovieSubject = PublishSubject<Array<BaseModel>>()
     
     // 模拟验证用户名可用性
     public class func usernameAvailable(_ username:String?, succeed:@escaping ((_ result:Bool) -> ())) -> () {
@@ -79,13 +82,36 @@ class APIService {
         }
     }
     
-    public class func requestDiscover() {
-        rxProvider.request(.discover).subscribe { (event) in
+    public class func request(_ apiType:API) {
+        rxProvider.request(apiType).subscribe { (event) in
             switch event {
             case .next(let element):
+                // json to Dictionary
                 let dic:Dictionary<String, Any>? = try? JSONSerialization.jsonObject(with: element.data, options: .mutableContainers) as! Dictionary<String, Any>
-                let modelArr = MovieItem.modelArrOfDic(dic)
-                APIService.discoverCycleSubject.onNext(modelArr)
+                
+                // Dictionary to models
+                switch apiType {
+                case .discover:
+                    APIService.discoverCycleSubject.onNext(MovieItem.modelArrOfDic(dic))
+                    break
+                case .popularPeople:
+                    APIService.popularPeopleSubject.onNext(PeopleItem.modelArrOfDic(dic))
+                    break
+                case .popularMovie:
+                    APIService.popularMovieSubjcet.onNext(MovieItem.modelArrOfDic(dic))
+                    break
+                case .topRatedMovie:
+                    APIService.topRatedMovieSubject.onNext(MovieItem.modelArrOfDic(dic))
+                    break
+                case .upcomingMovie:
+                    APIService.upcomingMovieSubject.onNext(MovieItem.modelArrOfDic(dic))
+                    break
+                case .playingMovie:
+                    APIService.playingMovieSubject.onNext(MovieItem.modelArrOfDic(dic))
+                    break
+                default:
+                    break
+                }
                 break
             case .error(let error):
                 debugPrint(error)
@@ -93,37 +119,7 @@ class APIService {
             case .completed:
                 break
             }
-        }.addDisposableTo(APIService.disposeBag)
-    }
-    
-    // 获取热门电影列表
-    public class func requestPopularMovie() {
-        rxProvider.request(.popularMovie).subscribe { (event) in
-            switch event {
-            case .next(let element):
-                let dic:Dictionary<String, Any>? = try? JSONSerialization.jsonObject(with: element.data, options: .mutableContainers) as! Dictionary<String, Any>
-                let modelArr = MovieItem.modelArrOfDic(dic)
-            case .error(_):
-                break
-            case .completed:
-                break
-            }
-        }.addDisposableTo(APIService.disposeBag)
-    }
-    
-    // 获取热门人物列表
-    public class func requestPopularPelple() {
-        rxProvider.request(.popularPeople).subscribe { (event) in
-            switch event {
-            case .next(let element):
-                let dic:Dictionary<String, Any>? = try? JSONSerialization.jsonObject(with: element.data, options: .mutableContainers) as! Dictionary<String, Any>
-                
-            case .error(_):
-                break
-            case .completed:
-                break
-            }
-        }.addDisposableTo(APIService.disposeBag)
+        }.addDisposableTo(disposeBag)
     }
 }
 

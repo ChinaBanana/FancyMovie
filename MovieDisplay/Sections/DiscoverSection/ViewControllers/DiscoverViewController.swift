@@ -25,8 +25,9 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         tableView = UITableView.init(frame: view.bounds, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(DiscoverTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = mainColor
+        tableView.separatorColor = UIColor.gray
         view.addSubview(tableView)
         
         let collectionViewLayout = UICollectionViewFlowLayout.init()
@@ -72,7 +73,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
                     self.tableHeaderView.reloadData()
                     self.tableHeaderView.contentOffset = CGPoint.init(x: -20, y: 0)
                     break
-                case .TableView(_):
+                case .TableView:
                     self.tableView.reloadData()
                     break
                 }
@@ -85,22 +86,22 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiscoverTableViewCell
+        cell.configContenViewWith(viewModel.cellList[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return viewModel.cellList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 150
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:DiscoverCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cycleImageCell", for: indexPath) as! DiscoverCollectionViewCell
-        cell.configContentView(self.viewModel.cycleItems[indexPath.row])
+        cell.configContentView(self.viewModel.cycleItems[indexPath.row] as! MovieItem)
         return cell
     }
     

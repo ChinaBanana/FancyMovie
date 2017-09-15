@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MovieItem {
+struct MovieItem : BaseModel {
     var vote_count:Int?
     var vote_average:Int?
     var id:Int?
@@ -40,8 +40,8 @@ struct MovieItem {
         release_date = dic["release_date"] as? String
     }
     
-    static func modelArrOfDic(_ modelDic:Dictionary<String, Any>?) -> Array<MovieItem> {
-        var modelArr = [MovieItem]()
+    static func modelArrOfDic(_ modelDic:Dictionary<String, Any>?) -> Array<BaseModel> {
+        var modelArr = [BaseModel]()
         if let dic = modelDic {
             let items = dic["results"] as? Array<Dictionary<String, Any>>
             if let itemData = items {
@@ -51,21 +51,20 @@ struct MovieItem {
         return modelArr
     }
     
-    static func modelArrOfDicArray(_ dicArray:Array<Dictionary<String, Any>>) -> Array<MovieItem> {
+    static func modelArrOfDicArray(_ dicArray:Array<Dictionary<String, Any>>) -> Array<BaseModel> {
         var responsArr = [MovieItem]()
         for item in dicArray {
-            let movieModel = MovieItem.init(item)
-            responsArr.append(movieModel)
+            responsArr.append(MovieItem.init(item))
         }
         return responsArr
     }
 }
 
-struct PeopleItem {
+struct PeopleItem : BaseModel {
     var profile_path:String?
     var adult:Bool?
     var id:Int?
-    var known_for:Array<MovieItem>?
+    var known_for:Array<BaseModel>?
     var name:String?
     var popularity:Int?
     init(_ dic:Dictionary<String,Any>) {
@@ -78,13 +77,33 @@ struct PeopleItem {
             known_for = MovieItem.modelArrOfDicArray(knownForList)
         }
     }
+    
+    static func modelArrOfDic(_ modelDic: Dictionary<String, Any>?) -> Array<BaseModel> {
+        var responseArr = [BaseModel]()
+        if let dic = modelDic {
+            let items = dic["results"] as? Array<Dictionary<String, Any>>
+            if let itemData = items {
+                responseArr.append(contentsOf: modelArrOfDicArray(itemData))
+            }
+        }
+        return responseArr
+    }
+    
+    static func modelArrOfDicArray(_ dicArray: Array<Dictionary<String, Any>>) -> Array<BaseModel> {
+        var responseArr = [BaseModel]()
+        for item in dicArray {
+            responseArr.append(PeopleItem.init(item))
+        }
+        return responseArr
+    }
 }
 
 struct DiscoverCellItem {
     let name:String
-    var array:Array = [MovieItem]()
-    init(_ name:String) {
+    var array:Array = [BaseModel]()
+    init(_ name:String, list:Array<BaseModel>) {
         self.name = name
+        self.array = list
     }
 }
 
