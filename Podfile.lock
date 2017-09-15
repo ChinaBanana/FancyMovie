@@ -1,0 +1,36 @@
+PODS:
+  - Alamofire (4.4.0)
+  - FDTemplateLayoutCell.swift (0.9.1)
+  - Kingfisher (3.5.2)
+  - Moya/Core (8.0.3):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (8.0.3):
+    - Moya/Core
+    - RxSwift (~> 3.0)
+  - Result (3.2.1)
+  - RxCocoa (3.3.1):
+    - RxSwift (~> 3.3)
+  - RxSwift (3.3.1)
+  - SnapKit (3.2.0)
+
+DEPENDENCIES:
+  - FDTemplateLayoutCell.swift
+  - Kingfisher
+  - Moya/RxSwift
+  - RxCocoa
+  - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  FDTemplateLayoutCell.swift: 39decd7876a439e2ffbbb6ef4d5e6a48699c0069
+  Kingfisher: 9950e382c500b6834ce004c7c4131c444e90c3a1
+  Moya: d3721622e3cc0cc2f038d69a258686f0b66e7252
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
+  RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
+  RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+
+PODFILE CHECKSUM: 718aaffb6d4247f77b0c6a8f9bae526b695e5762
+
+COCOAPODS: 1.2.0

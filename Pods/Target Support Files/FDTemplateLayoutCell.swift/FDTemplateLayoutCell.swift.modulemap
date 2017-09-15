@@ -1,0 +1,6 @@
+framework module FDTemplateLayoutCell_swift {
+  umbrella header "FDTemplateLayoutCell.swift-umbrella.h"
+
+  export *
+  module * { export * }
+}
