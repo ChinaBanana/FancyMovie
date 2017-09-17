@@ -10,7 +10,20 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
     
-    private let viewModel = MovieDetailViewModel()
+    private var viewModel:MovieDetailViewModel!
+    
+    convenience init (_ item:MovieItem) {
+        self.init(nibName: nil, bundle: nil)
+        viewModel = MovieDetailViewModel.init(item)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

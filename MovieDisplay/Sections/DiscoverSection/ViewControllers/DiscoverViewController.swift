@@ -15,7 +15,6 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     var tableView:UITableView!
     var tableHeaderView:UICollectionView!
     var timer:Timer!
-    // 轮播图宽高比 300 ： 169
     let cycleImageWidth:CGFloat = kScreenWidth - 40
     let cycleImageHeight:CGFloat = (kScreenWidth - 40) * 169 / 300
     

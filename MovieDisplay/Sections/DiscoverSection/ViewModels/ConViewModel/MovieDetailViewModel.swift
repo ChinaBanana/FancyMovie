@@ -10,4 +10,9 @@ import UIKit
 
 class MovieDetailViewModel {
     
+    let movie:MovieItem!
+    
+    init(_ item:MovieItem) {
+        movie = item
+    }
 }

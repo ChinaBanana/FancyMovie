@@ -13,10 +13,10 @@ class ImageUrl {
     static let secureBaseUrl = "https://image.tmdb.org/t/p/"
     
     enum ImageType {
-        case backdrop
+        case backdrop // 宽高比 300:169
         case logo
-        case poster
-        case profile
+        case poster   // 宽高比：92:138
+        case profile  // 宽高比：185:278 和.poster 一致
         case still
     }
     
