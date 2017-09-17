@@ -20,7 +20,6 @@ typealias ValidationResult = (valid:Bool?, message:String?)
 class APIService {
     
     static let rxProvider = RxMoyaProvider<API>.init()
-    static let provider = MoyaProvider<API>.init()
     static let disposeBag = DisposeBag.init()
     
     static let discoverCycleSubject = PublishSubject<Array<BaseModel>>()
@@ -30,56 +29,51 @@ class APIService {
     static let upcomingMovieSubject = PublishSubject<Array<BaseModel>>()
     static let playingMovieSubject = PublishSubject<Array<BaseModel>>()
     
-    // 模拟验证用户名可用性
-    public class func usernameAvailable(_ username:String?, succeed:@escaping ((_ result:Bool) -> ())) -> () {
-        DispatchQueue.init(label: "com.vavidateusername.queue").asyncAfter(deadline: DispatchTime.now() + 1) {
-            let num = arc4random() % 2
-            if num == 1 {
-                succeed(true)
-            }else{
-                succeed(false)
-            }
-        }
-    }
     // 获取token, 获取到token后需要加载webView对token进行授权，授权后获取session_id
     public class func requestToken() -> () {
-        provider.request(.token) { (result) in
-            debugPrint("requestToken:\(result)")
-            do {
-                let response = try result.dematerialize()
-                let data = response.data
-                let dic:Dictionary = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Dictionary<String, Any>
-                if dic["success"] as! Bool {
+        rxProvider.request(.token).subscribe { (event) in
+            switch event {
+            case .next(let element):
+                let dic:Dictionary<String, Any>? = try? JSONSerialization.jsonObject(with: element.data, options: .mutableContainers) as! Dictionary<String, Any>
+                if dic?["success"] as! Bool {
                     var account = Account.defaultAccount
-                    account.token = dic["request_token"] as? String
-                    account.tokenExpiresTime = dic["expires_at"] as? String
+                    account.token = dic?["request_token"] as? String
+                    account.tokenExpiresTime = dic?["expires_at"] as? String
                     Account.saveAccount(account)
                     debugPrint(account)
                 }else{
                     
                 }
-            }catch {
-                
+                break
+            case .error(let error):
+                debugPrint(error)
+            case .completed:
+                break
             }
-        }
+        }.addDisposableTo(disposeBag)
     }
     
     // 获取Session
     public class func requestSession() -> () {
-        provider.request(.session) { (result) in
-            debugPrint("requestSession:\(result)")
-            do {
-                let response = try result.dematerialize()
-                let data = response.data
-                let dic:Dictionary = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Dictionary<String, Any>
-                debugPrint(dic)
-                var account = Account.defaultAccount
-                account.session = dic["session_id"] as? String
-                Account.saveAccount(account)
-            }catch {
-                
+        rxProvider.request(.session).subscribe { (event) in
+            switch event {
+            case .next(let element):
+                let dic:Dictionary<String, Any>? = try? JSONSerialization.jsonObject(with: element.data, options: .mutableContainers) as! Dictionary<String, Any>
+                if dic?["success"] as! Bool {
+                    var account = Account.defaultAccount
+                    account.session = dic?["session_id"] as? String
+                    Account.saveAccount(account)
+                    debugPrint(account)
+                }else{
+                    
+                }
+                break
+            case .error(let error):
+                debugPrint(error)
+            case .completed:
+                break
             }
-        }
+            }.addDisposableTo(disposeBag)
     }
     
     public class func request(_ apiType:API) {
@@ -114,7 +108,7 @@ class APIService {
                 }
                 break
             case .error(let error):
-                debugPrint(error)
+                debugPrint("Error:\(apiType),Info:\(error)")
                 break
             case .completed:
                 break

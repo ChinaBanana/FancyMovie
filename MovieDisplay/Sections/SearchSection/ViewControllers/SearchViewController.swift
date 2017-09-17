@@ -8,12 +8,18 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
-
+class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
+    
+    private let viewModel = SearchViewModel()
+    private var searchCon:UISearchController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Search"
         // Do any additional setup after loading the view.
+        searchCon = UISearchController.init(searchResultsController: nil)
+        searchCon.searchResultsUpdater = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +27,15 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        NavigatorService.modelToPage(searchCon, animated: true) {
+            
+        }
+    }
 
     /*
     // MARK: - Navigation

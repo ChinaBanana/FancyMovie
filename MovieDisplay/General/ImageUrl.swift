@@ -20,13 +20,13 @@ class ImageUrl {
         case still
     }
     
-    enum backdrop_sizes {
+    private enum backdrop_sizes {
         case w300
         case w780
         case w1280
         case original
     }
-    enum logo_sizes {
+    private enum logo_sizes {
         case w45
         case w92
         case w154
@@ -35,7 +35,7 @@ class ImageUrl {
         case w500
         case original
     }
-    enum poster_sizes {
+    private enum poster_sizes {
         case w92
         case w154
         case w185
@@ -45,14 +45,14 @@ class ImageUrl {
         case original
     }
     
-    enum profile_sizes {
+    private enum profile_sizes {
         case w45
         case w185
         case w632
         case original
     }
     
-    enum still_sizes {
+    private enum still_sizes {
         case w92
         case w185
         case w300
@@ -72,6 +72,60 @@ class ImageUrl {
                 return URL.init(string: ImageUrl.secureBaseUrl + "\(profile_sizes.w45)" + aPath)
             case .still:
                 return URL.init(string: ImageUrl.secureBaseUrl + "\(still_sizes.w92)" + aPath)
+            }
+        }
+        return nil
+    }
+    
+    class func standardImage(_ path:String?, type:ImageType) -> URL?{
+        if let aPath = path {
+            switch type {
+            case .backdrop:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(backdrop_sizes.w780)" + aPath)
+            case .logo:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(logo_sizes.w185)" + aPath)
+            case .poster:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(poster_sizes.w342)" + aPath)
+            case .profile:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(profile_sizes.w185)" + aPath)
+            case .still:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(still_sizes.w185)" + aPath)
+            }
+        }
+        return nil
+    }
+    
+    class func largeImage(_ path:String?, type:ImageType) -> URL? {
+        if let aPath = path {
+            switch type {
+            case .backdrop:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(backdrop_sizes.w1280)" + aPath)
+            case .logo:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(logo_sizes.w500)" + aPath)
+            case .poster:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(poster_sizes.w780)" + aPath)
+            case .profile:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(profile_sizes.w632)" + aPath)
+            case .still:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(still_sizes.w300)" + aPath)
+            }
+        }
+        return nil
+    }
+    
+    class func originalImage(_ path:String?, type:ImageType) -> URL? {
+        if let aPath = path {
+            switch type {
+            case .backdrop:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(backdrop_sizes.original)" + aPath)
+            case .logo:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(logo_sizes.original)" + aPath)
+            case .poster:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(poster_sizes.original)" + aPath)
+            case .profile:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(profile_sizes.original)" + aPath)
+            case .still:
+                return URL.init(string: ImageUrl.secureBaseUrl + "\(still_sizes.original)" + aPath)
             }
         }
         return nil

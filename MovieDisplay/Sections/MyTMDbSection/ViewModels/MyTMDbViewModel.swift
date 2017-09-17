@@ -24,15 +24,8 @@ class MyTMDbViewModel {
         }else if username?.rangeOfCharacter(from: NSCharacterSet.alphanumerics.inverted) != nil {
             validateSubject.onNext((false, "Username can only contain numbers or characters"))
         }else{
-            ProgressView.showProgress("loading...")
-            APIService.usernameAvailable(username) { (succeed) in
-                ProgressView.dismissProgress()
-                if succeed {
-                    self.validateSubject.onNext((true, "Username avaliable"))
-                }else{
-                    self.validateSubject.onNext((false, "Username has been taken"))
-                }
-            }
+//            ProgressView.showProgress("loading...")
+            
         }
     }
     

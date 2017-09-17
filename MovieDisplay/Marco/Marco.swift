@@ -13,7 +13,7 @@ let kScrrenHeight = UIScreen.main.bounds.size.height
 
 let APIKey = "f539575bedd7836aee57ef69e54413a7"
 
-let mainColor = UIColor.init(white: 0/255, alpha: 1)
+let mainColor = UIColor.init(white: 22/255, alpha: 1)
 let tintColor = UIColor.init(red: 246/255, green: 122/255, blue: 40/255, alpha: 1)
 
 enum UserDefaultsKey {

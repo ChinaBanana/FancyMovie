@@ -43,6 +43,7 @@ class DiscoverViewModel {
         Observable.zip(APIService.popularMovieSubjcet, APIService.popularPeopleSubject, APIService.playingMovieSubject, APIService.upcomingMovieSubject, APIService.topRatedMovieSubject).subscribe { (event) in
             switch event {
             case .next(let element):
+                self.cellList.removeAll()
                 self.cellList.append(DiscoverCellItem.init("Popular Movies", list: element.0))
                 self.cellList.append(DiscoverCellItem.init("Popular People", list: element.1))
                 self.cellList.append(DiscoverCellItem.init("Now Playing", list: element.2))
@@ -66,7 +67,8 @@ class DiscoverViewModel {
         APIService.request(.playingMovie)
     }
     
-    func requestDiscover(_ page:Int) -> () {
-        
+    public func navigateToDetailViewOfMovie(_ movie:MovieItem) {
+        let movieDetailCon = MovieDetailViewController()
+        NavigatorService.navigateToPage(movieDetailCon, animated: true)
     }
 }

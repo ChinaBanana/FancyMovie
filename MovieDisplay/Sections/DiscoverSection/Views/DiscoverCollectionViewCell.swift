@@ -33,8 +33,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     }
     
     func configContentView(_ item:MovieItem) -> () {
-        imageView.kf.setImage(with:ImageUrl.thumbImage(item.backdrop_path, type:.backdrop))
-        imageView.kf.setImage(with: ImageUrl.thumbImage(item.backdrop_path, type: .backdrop), placeholder: nil, options: nil, progressBlock: nil) { (image, error, cachType, imageUrl) in
+        imageView.kf.setImage(with: ImageUrl.standardImage(item.backdrop_path, type: .backdrop), placeholder: nil, options: nil, progressBlock: nil) { (image, error, cachType, imageUrl) in
             
         }
         

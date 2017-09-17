@@ -27,7 +27,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.register(DiscoverTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = mainColor
-        tableView.separatorColor = UIColor.gray
+        tableView.separatorStyle = .none
         view.addSubview(tableView)
         
         let collectionViewLayout = UICollectionViewFlowLayout.init()
@@ -43,13 +43,12 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.tableHeaderView = tableHeaderView
         
         // 轮播图
-        Observable<Int>.interval(3.5, scheduler: MainScheduler.instance).subscribe { (event) in
+        Observable<Int>.interval(5.5, scheduler: MainScheduler.instance).subscribe { (event) in
             switch event {
             case .next(let index):
                 let num = self.viewModel.cycleItems.count - 2
                 let idx = index % num + 1
                 let aIdx = CGFloat.init(idx)
-                debugPrint(num, idx)
                 UIView.animate(withDuration: 0.35, animations: {
                     self.tableHeaderView.contentOffset = CGPoint.init(x: self.cycleImageWidth * aIdx - 20, y: 0)
                 }, completion: { (completion) in
@@ -71,7 +70,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
                 switch reloadType {
                 case .CollectionView:
                     self.tableHeaderView.reloadData()
-                    self.tableHeaderView.contentOffset = CGPoint.init(x: -20, y: 0)
+                    self.tableHeaderView.contentOffset = CGPoint.init(x: self.cycleImageWidth - 20, y: 0)
                     break
                 case .TableView:
                     self.tableView.reloadData()
@@ -96,7 +95,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return (kScreenWidth - 50) / 4 * 138 / 92 + 70
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -110,7 +109,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        debugPrint(viewModel.cycleItems[indexPath.row])
+        self.viewModel.navigateToDetailViewOfMovie(self.viewModel.cycleItems[indexPath.row] as! MovieItem)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

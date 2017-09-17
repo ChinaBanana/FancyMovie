@@ -13,11 +13,11 @@ import SnapKit
 
 class MyTMDbViewController: UIViewController {
     
-    fileprivate let viewModel = MyTMDbViewModel()
-    fileprivate let accountTF = UITextField()
-    fileprivate let pswTF = UITextField()
-    fileprivate let loginBtn = UIButton()
-    fileprivate let disposeBag = DisposeBag.init()
+    private let viewModel = MyTMDbViewModel()
+    private let accountTF = UITextField()
+    private let pswTF = UITextField()
+    private let loginBtn = UIButton()
+    private let disposeBag = DisposeBag.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()

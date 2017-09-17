@@ -30,8 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate func customApperance() -> () {
         window?.tintColor = tintColor
+        UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().barTintColor = mainColor
-        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().tintColor = tintColor
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18), NSForegroundColorAttributeName: UIColor.white]
         
         UITabBar.appearance().barTintColor = mainColor

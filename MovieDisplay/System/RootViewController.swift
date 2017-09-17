@@ -17,7 +17,7 @@ class RootViewController: UITabBarController {
         addChildViewController(MyTMDbViewController(), title: "My TMDb", icon: UIImage.init(named: "my_TMDb_normal"), selectedIcon: UIImage.init(named: "my_TMDb_selected"))
     }
     
-    fileprivate func addChildViewController(_ childCon:UIViewController, title:String, icon:UIImage?, selectedIcon:UIImage?) {
+    private func addChildViewController(_ childCon:UIViewController, title:String, icon:UIImage?, selectedIcon:UIImage?) {
         let naviCon = UINavigationController.init(rootViewController: childCon)
         naviCon.tabBarItem = UITabBarItem.init(title: title, image: icon?.withRenderingMode(.alwaysOriginal), selectedImage: selectedIcon?.withRenderingMode(.alwaysOriginal))
         self.addChildViewController(naviCon)
