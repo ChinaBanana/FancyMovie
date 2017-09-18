@@ -12,7 +12,7 @@ let movieItemWidth = (kScreenWidth - 50) / 4
 
 class DiscoverTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    var movieListView:UICollectionView!
+    private var movieListView:UICollectionView!
     private var contentItem:DiscoverCellItem?
     private let nameLabel = UILabel()
     private let seeAllBtn = UIButton()

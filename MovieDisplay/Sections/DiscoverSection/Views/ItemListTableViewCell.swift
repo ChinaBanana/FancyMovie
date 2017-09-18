@@ -1,5 +1,5 @@
 //
-//  MovieListTableViewCell.swift
+//  ItemListTableViewCell.swift
 //  MovieDisplay
 //
 //  Created by 赵海伟 on 17/09/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListTableViewCell: UITableViewCell {
+class ItemListTableViewCell: UITableViewCell {
     
     private let viewModel = MovieListTableViewCellViewModel()
     private let profileImage = UIImageView()

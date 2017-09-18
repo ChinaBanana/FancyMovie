@@ -16,7 +16,7 @@ class DiscoverTableViewCellViewModel {
     
     func navigateToMovieListView(_ contentItem:DiscoverCellItem?) -> () {
         if let item = contentItem {
-            let viewCon = MovieListViewController.init(item)
+            let viewCon = ItemListViewController.init(item)
             NavigatorService.navigateToPage(viewCon, animated: true)
         }
     }

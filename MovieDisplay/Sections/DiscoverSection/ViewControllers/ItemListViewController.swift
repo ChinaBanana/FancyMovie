@@ -1,5 +1,5 @@
 //
-//  MovieListViewController.swift
+//  ItemListViewController.swift
 //  MovieDisplay
 //
 //  Created by 赵海伟 on 16/09/2017.
@@ -7,10 +7,13 @@
 //
 
 import UIKit
-
-class MovieListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+/**
+ Discover 页面点击see all button 到这个页面
+ 可以展示 MovieList 或 PeopleList
+ */
+class ItemListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var viewModel: MovieListViewModel!
+    private var viewModel: ItemListViewModel!
     private var tableView: UITableView!
     
     // MARK: - life cycle
@@ -20,7 +23,7 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     convenience init (_ item:DiscoverCellItem) {
         self.init(nibName: nil, bundle: nil)
-        viewModel = MovieListViewModel.init(item)
+        viewModel = ItemListViewModel.init(item)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,11 +33,11 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = mainColor
-        self.navigationItem.title = viewModel.movieListItem.name
+        self.navigationItem.title = viewModel.discoverItem.name
         tableView = UITableView.init(frame: view.bounds, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(MovieListTableViewCell.self, forCellReuseIdentifier: "listCell")
+        tableView.register(ItemListTableViewCell.self, forCellReuseIdentifier: "listCell")
         tableView.backgroundColor = mainColor
         tableView.separatorStyle = .none
         view.addSubview(tableView)
@@ -42,13 +45,13 @@ class MovieListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - UITableViewDelegate and UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! MovieListTableViewCell
-        cell.configCellContentWith(viewModel.movieListItem.array[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! ItemListTableViewCell
+        cell.configCellContentWith(viewModel.discoverItem.array[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.movieListItem.array.count
+        return viewModel.discoverItem.array.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

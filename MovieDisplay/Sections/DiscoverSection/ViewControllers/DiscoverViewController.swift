@@ -11,15 +11,18 @@ import RxSwift
 
 class DiscoverViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    let refreshCon = UIRefreshControl()
     let viewModel = DiscoverViewModel()
     var tableView:UITableView!
     var tableHeaderView:UICollectionView!
+    var cycleIndex:Int = 1
     var timer:Timer!
     let cycleImageWidth:CGFloat = kScreenWidth - 40
     let cycleImageHeight:CGFloat = (kScreenWidth - 40) * 169 / 300
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "Discover"
         tableView = UITableView.init(frame: view.bounds, style: .grouped)
         tableView.delegate = self
@@ -44,14 +47,15 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         // 轮播图
         Observable<Int>.interval(5.5, scheduler: MainScheduler.instance).subscribe { (event) in
             switch event {
-            case .next(let index):
+            case .next(_):
                 let num = self.viewModel.cycleItems.count - 2
-                let idx = index % num + 1
-                let aIdx = CGFloat.init(idx)
+                let aIdx = CGFloat.init(self.cycleIndex)
                 UIView.animate(withDuration: 0.35, animations: {
                     self.tableHeaderView.contentOffset = CGPoint.init(x: self.cycleImageWidth * aIdx - 20, y: 0)
                 }, completion: { (completion) in
-                    if idx == num {
+                    self.cycleIndex += 1
+                    if self.cycleIndex == num {
+                        self.cycleIndex = 1
                         self.tableHeaderView.contentOffset = CGPoint.init(x: -20, y: 0)
                     }
                 })
@@ -111,9 +115,27 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
         self.viewModel.navigateToDetailViewOfMovie(self.viewModel.cycleItems[indexPath.row] as! MovieItem)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView == tableHeaderView else {
+            return
+        }
+        let index = (Int)(scrollView.contentOffset.x / cycleImageWidth) + 1
+        if index >= viewModel.cycleItems.count - 2 {
+            scrollView.setContentOffset(CGPoint.init(x: -20, y: 0), animated: false)
+        }
+        self.cycleIndex = index
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == tableHeaderView {
-            
+            self.cycleIndex = (Int)(scrollView.contentOffset.x / cycleImageWidth) + 1
+            UIView.animate(withDuration: 0.2, animations: {
+                scrollView.contentOffset = CGPoint.init(x: self.cycleImageWidth * (CGFloat)(self.cycleIndex) - 20, y: 0)
+            })
         }
     }
 

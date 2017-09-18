@@ -9,5 +9,8 @@
 import Foundation
 
 class PeopleDetailViewModel {
-    
+    let people:PeopleItem!
+    init(_ item:PeopleItem) {
+        people = item
+    }
 }

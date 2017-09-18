@@ -10,7 +10,6 @@ import UIKit
 
 extension String {
     
-    
     /**
      Get the width with the string.
      

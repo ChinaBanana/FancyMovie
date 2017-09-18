@@ -1,5 +1,5 @@
 //
-//  MovieListViewModel.swift
+//  ItemListViewModel.swift
 //  MovieDisplay
 //
 //  Created by 赵海伟 on 17/09/2017.
@@ -8,17 +8,20 @@
 
 import UIKit
 
-class MovieListViewModel {
-    let movieListItem:DiscoverCellItem!
+class ItemListViewModel {
+    let discoverItem:DiscoverCellItem!
     
     init(_ item:DiscoverCellItem) {
-        movieListItem = item
+        discoverItem = item
     }
     
     func navigateToMovieDetailViewController(_ index:Int) -> () {
-        if let movie = movieListItem.array[index] as? MovieItem {
+        if let movie = discoverItem.array[index] as? MovieItem {
             let movieDetailCon = MovieDetailViewController.init(movie)
             NavigatorService.navigateToPage(movieDetailCon, animated: true)
+        }else if let people = discoverItem.array[index] as? PeopleItem {
+            let peopleDetailCon = PeopleDetailViewController.init(people)
+            NavigatorService.navigateToPage(peopleDetailCon, animated: true)
         }
     }
 }
