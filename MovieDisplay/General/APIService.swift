@@ -13,14 +13,15 @@ import Moya
 typealias ValidationResult = (valid:Bool?, message:String?)
 
 /**
- * 网络请求分两种情况
+ * 网络请求分两种情况，为了解耦，多使用方法2
  * 1. 单独的网络请求，只有一个地方用到，使用闭包进行回调获取结果
  * 2. 多处复用的网络请求，可能影响到一个或多个地方的UI，使用Subject发送事件进行解耦
  **/
-class APIService {
+class APIService : BaseService{
     
     static let rxProvider = RxMoyaProvider<API>.init()
     static let disposeBag = DisposeBag.init()
+    static let commonSubject = PublishSubject<Publishable>()
     
     static let discoverCycleSubject = PublishSubject<Array<BaseModel>>()
     static let popularMovieSubjcet = PublishSubject<Array<BaseModel>>()
@@ -28,6 +29,28 @@ class APIService {
     static let topRatedMovieSubject = PublishSubject<Array<BaseModel>>()
     static let upcomingMovieSubject = PublishSubject<Array<BaseModel>>()
     static let playingMovieSubject = PublishSubject<Array<BaseModel>>()
+    static let similarMovieSubject = PublishSubject<Array<BaseModel>>()
+    
+    public class func publish(_ obj:Publishable) {
+        commonSubject.onNext(obj)
+    }
+    
+    // 封装订阅操作
+    public class func subscribe(_ condition:@escaping() -> Bool, handler:@escaping(_ element:Publishable)->()) {
+        commonSubject.filter({ (item) -> Bool in
+            return condition()
+        }).subscribe { (event) in
+            switch event {
+            case .next(let element):
+                handler(element)
+                break
+            case .error(_):
+                break
+            case .completed:
+                break
+            }
+        }.addDisposableTo(disposeBag)
+    }
     
     // 获取token, 获取到token后需要加载webView对token进行授权，授权后获取session_id
     public class func requestToken() -> () {
@@ -103,6 +126,14 @@ class APIService {
                 case .playingMovie:
                     APIService.playingMovieSubject.onNext(MovieItem.modelArrOfDic(dic))
                     break
+                case .getSimilar(_):
+                    APIService.similarMovieSubject.onNext(MovieItem.modelArrOfDic(dic))
+                case .getMovieDetail(let movie_id):
+                    if let datas = dic{
+                        APIService.publish(MovieDetailItem.init(datas))
+                    }else{
+                        debugPrint("Error: GetmovieDetail failed:Id\(movie_id)")
+                    }
                 default:
                     break
                 }
@@ -132,6 +163,8 @@ enum API {
     case topRatedMovie
     case upcomingMovie
     case playingMovie
+    case getSimilar(Int)
+    case getMovieDetail(Int)
 }
 
 extension API:TargetType {
@@ -165,6 +198,10 @@ extension API:TargetType {
             return "/movie/upcoming"
         case .playingMovie:
             return "/movie/now_playing"
+        case .getSimilar(let movie_id):
+            return "/movie/\(movie_id)/similar"
+        case .getMovieDetail(let movie_id):
+            return "/movie/\(movie_id)"
         }
     }
     

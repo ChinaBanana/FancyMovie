@@ -67,8 +67,11 @@ class DiscoverViewModel {
         APIService.request(.playingMovie)
     }
     
-    public func navigateToDetailViewOfMovie(_ movie:MovieItem) {
-        let movieDetailCon = MovieDetailViewController()
-        NavigatorService.navigateToPage(movieDetailCon, animated: true)
+    public func navigateToDetailViewOfMovie(_ index:Int) {
+        if let movieItem = cycleItems[index] as? MovieItem {
+            let movieDetailCon = MovieDetailViewController()
+            NavigatorService.navigateToPage(movieDetailCon, animated: true)
+            NavigatorService.publish(movieItem)
+        }
     }
 }

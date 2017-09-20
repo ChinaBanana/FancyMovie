@@ -11,17 +11,20 @@ import UIKit
 class ItemListViewModel {
     let discoverItem:DiscoverCellItem!
     
+    let movieDetailCon = MovieDetailViewController.init()
+    let peopleDetailCon = PeopleDetailViewController.init()
+    
     init(_ item:DiscoverCellItem) {
         discoverItem = item
     }
     
     func navigateToMovieDetailViewController(_ index:Int) -> () {
         if let movie = discoverItem.array[index] as? MovieItem {
-            let movieDetailCon = MovieDetailViewController.init(movie)
             NavigatorService.navigateToPage(movieDetailCon, animated: true)
+            NavigatorService.publish(movie)
         }else if let people = discoverItem.array[index] as? PeopleItem {
-            let peopleDetailCon = PeopleDetailViewController.init(people)
             NavigatorService.navigateToPage(peopleDetailCon, animated: true)
+            NavigatorService.publish(people)
         }
     }
 }

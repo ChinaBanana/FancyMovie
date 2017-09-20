@@ -9,7 +9,7 @@
 import UIKit
 
 let kScreenWidth = UIScreen.main.bounds.size.width
-let kScrrenHeight = UIScreen.main.bounds.size.height
+let kScreenHeight = UIScreen.main.bounds.size.height
 
 let APIKey = "f539575bedd7836aee57ef69e54413a7"
 

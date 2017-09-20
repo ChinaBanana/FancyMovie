@@ -1,5 +1,5 @@
 //
-//  MovieListTableViewCellViewModel.swift
+//  ItemListTableViewCellViewModel.swift
 //  MovieDisplay
 //
 //  Created by 赵海伟 on 17/09/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListTableViewCellViewModel {
+class ItemListTableViewCellViewModel {
     
 }
 

@@ -112,7 +112,7 @@ class DiscoverViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel.navigateToDetailViewOfMovie(self.viewModel.cycleItems[indexPath.row] as! MovieItem)
+        self.viewModel.navigateToDetailViewOfMovie(indexPath.row)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

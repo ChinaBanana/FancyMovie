@@ -21,7 +21,7 @@ class MyTMDbViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         accountTF.rx.text.subscribe { (event) in
             debugPrint(event)
         }.disposed(by: disposeBag)
@@ -61,7 +61,7 @@ class MyTMDbViewController: UIViewController {
         accountTF.snp.makeConstraints { (make) in
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
-            make.centerY.equalTo(kScrrenHeight / 3)
+            make.centerY.equalTo(kScreenHeight / 3)
             make.height.equalTo(45)
         }
         pswTF.snp.makeConstraints { (make) in

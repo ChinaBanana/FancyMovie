@@ -10,14 +10,28 @@ import Foundation
 
 class DiscoverTableViewCellViewModel {
     
+    var contentItem:DiscoverCellItem?
+    
     init() {
         
     }
     
-    func navigateToMovieListView(_ contentItem:DiscoverCellItem?) -> () {
+    func navigateToMovieListView() -> () {
         if let item = contentItem {
             let viewCon = ItemListViewController.init(item)
             NavigatorService.navigateToPage(viewCon, animated: true)
+        }
+    }
+    
+    func navigateToMovieDetail(_ index:Int) -> () {
+        if let movie = contentItem?.array[index] as? MovieItem {
+            let viewCon = MovieDetailViewController()
+            NavigatorService.navigateToPage(viewCon, animated: true)
+            NavigatorService.publish(movie)
+        }else if let peopleItem = contentItem?.array[index] as? PeopleItem {
+            let viewCon = PeopleDetailViewController()
+            NavigatorService.navigateToPage(viewCon, animated: true)
+            NavigatorService.publish(peopleItem)
         }
     }
 }

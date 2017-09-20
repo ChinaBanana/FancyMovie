@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import RxSwift
 /**
  Navigation service
  对页面跳转进行解耦
  */
-class NavigatorService {
+class NavigatorService : BaseService{
+    
+    static let publishSubject = PublishSubject<Publishable>()
+    static let disposeBag = DisposeBag.init()
     
     init() {
         
+    }
+    
+    static func publish(_ element: Publishable) {
+        publishSubject.onNext(element)
     }
     
     // 导航到视图

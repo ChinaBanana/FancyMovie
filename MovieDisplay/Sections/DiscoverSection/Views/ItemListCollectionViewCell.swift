@@ -1,5 +1,5 @@
 //
-//  MovieListCollectionViewCell.swift
+//  ItemListCollectionViewCell.swift
 //  MovieDisplay
 //
 //  Created by 赵海伟 on 16/09/2017.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class MovieListCollectionViewCell: UICollectionViewCell {
+class ItemListCollectionViewCell: UICollectionViewCell {
     
     private let imageContent = UIImageView()
     private let nameLabel = UILabel()
     private let dateLabel = UILabel()
-    private let viewModel = MovieListCollectionViewCellViewModel()
+    private let viewModel = ItemListCollectionViewCellViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

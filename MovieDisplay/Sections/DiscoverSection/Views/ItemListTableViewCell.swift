@@ -10,7 +10,7 @@ import UIKit
 
 class ItemListTableViewCell: UITableViewCell {
     
-    private let viewModel = MovieListTableViewCellViewModel()
+    private let viewModel = ItemListTableViewCellViewModel()
     private let profileImage = UIImageView()
     private let nameLabel = UILabel()
     private let dateLabel = UILabel()
@@ -79,8 +79,7 @@ class ItemListTableViewCell: UITableViewCell {
         } else if let people = model as? PeopleItem {
             nameLabel.text = people.name
             profileImage.kf.setImage(with: ImageUrl.standardImage(people.profile_path, type: .profile), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, catchType, url) in
-                debugPrint(image?.size.width)
-                debugPrint(image?.size.height)
+                
             })
         }
     }

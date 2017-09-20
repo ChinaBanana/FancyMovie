@@ -10,15 +10,11 @@ import UIKit
 
 class PeopleDetailViewController: UIViewController {
     
-    private var viewModel:PeopleDetailViewModel!
+    private let viewModel = PeopleDetailViewModel()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    convenience init(_ people:PeopleItem) {
-        self.init(nibName: nil, bundle: nil)
-        viewModel = PeopleDetailViewModel.init(people)
+        bindUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,6 +25,12 @@ class PeopleDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = mainColor
         // Do any additional setup after loading the view.
+    }
+    
+    func bindUI() -> () {
+        viewModel.refreshUISbujcet.subscribe { (event) in
+            
+        }.addDisposableTo(viewModel.disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
