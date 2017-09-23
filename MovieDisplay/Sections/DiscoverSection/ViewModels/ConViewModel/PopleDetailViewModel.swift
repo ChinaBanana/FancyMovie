@@ -24,6 +24,7 @@ class PeopleDetailViewModel {
             }.single().subscribe { (event) in
                 switch event {
                 case .next(let peopleItem):
+                    self.people = peopleItem as? PeopleItem
                     self.refreshUISbujcet.onNext(peopleItem as! PeopleItem)
                     break
                 case .error(let error):

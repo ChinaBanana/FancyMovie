@@ -93,4 +93,11 @@ extension UIView {
         line.backgroundColor = UIColor.init(white: 0.2, alpha: 0.5)
         self.addSubview(line)
     }
+    
+    func setScreenWidthBottomLine() -> () {
+        let line = UIView.init(frame: CGRect.init(x: 0, y: self.height - 1, width: kScreenWidth, height: 1))
+        line.centerX = self.width / 2
+        line.backgroundColor = UIColor.init(white: 0.2, alpha: 0.5)
+        self.addSubview(line)
+    }
 }

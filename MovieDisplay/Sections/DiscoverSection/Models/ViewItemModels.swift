@@ -8,27 +8,28 @@
 
 import Foundation
 
-struct DiscoverCellItem {
+struct DiscoverCellItem : Publishable{
     enum ModelType {
         case Movie
         case People
     }
     let name:String
-    var array:Array = [BaseModel]()
-    
-    var modelType:ModelType {
-        get {
-            switch name {
-            case "Popular People":
-                return .People
-            default:
-                return .Movie
-            }
-        }
-    }
+    let array:Array<BaseModel>
     
     init(_ name:String, list:Array<BaseModel>) {
         self.name = name
         self.array = list
+    }
+}
+
+struct PeopleOfMovieDetailItem : Publishable{
+    var id:Int?
+    let castItems:Array<CastItem>
+    let crewItems:Array<CrewItem>
+    
+    init(_ datas:Dictionary<String,Any>?) {
+        id = datas?["id"] as? Int
+        castItems = CastItem.modelArrOfDic(datas) as! Array<CastItem>
+        crewItems = CrewItem.modelArrOfDic(datas) as! Array<CrewItem>
     }
 }

@@ -13,6 +13,7 @@ import Moya
 typealias ValidationResult = (valid:Bool?, message:String?)
 
 /**
+ * 这里对网络层也进行了解耦，实际项目中可根据情况确定是否需要解耦
  * 网络请求分两种情况，为了解耦，多使用方法2
  * 1. 单独的网络请求，只有一个地方用到，使用闭包进行回调获取结果
  * 2. 多处复用的网络请求，可能影响到一个或多个地方的UI，使用Subject发送事件进行解耦
@@ -36,15 +37,16 @@ class APIService : BaseService{
     }
     
     // 封装订阅操作
-    public class func subscribe(_ condition:@escaping() -> Bool, handler:@escaping(_ element:Publishable)->()) {
+    public class func subscribe(_ condition:@escaping(_ item:Publishable) -> Bool, handler:@escaping(_ element:Publishable)->()) {
         commonSubject.filter({ (item) -> Bool in
-            return condition()
+            return condition(item)
         }).subscribe { (event) in
             switch event {
             case .next(let element):
                 handler(element)
                 break
             case .error(_):
+                
                 break
             case .completed:
                 break
@@ -128,12 +130,16 @@ class APIService : BaseService{
                     break
                 case .getSimilar(_):
                     APIService.similarMovieSubject.onNext(MovieItem.modelArrOfDic(dic))
-                case .getMovieDetail(let movie_id):
-                    if let datas = dic{
-                        APIService.publish(MovieDetailItem.init(datas))
-                    }else{
-                        debugPrint("Error: GetmovieDetail failed:Id\(movie_id)")
-                    }
+                    break
+                case .getMovieDetail(_):
+                    APIService.publish(MovieDetailItem.init(dic))
+                    break
+                case .getVideos(_):
+                    
+                    break
+                case .getMovieCredits(_):
+                    APIService.publish(PeopleOfMovieDetailItem.init(dic))
+                    break
                 default:
                     break
                 }
@@ -165,6 +171,8 @@ enum API {
     case playingMovie
     case getSimilar(Int)
     case getMovieDetail(Int)
+    case getVideos(Int)
+    case getMovieCredits(Int)
 }
 
 extension API:TargetType {
@@ -202,6 +210,10 @@ extension API:TargetType {
             return "/movie/\(movie_id)/similar"
         case .getMovieDetail(let movie_id):
             return "/movie/\(movie_id)"
+        case .getVideos(let movie_id):
+            return "/movie/\(movie_id)/videos"
+        case .getMovieCredits(let movie_id):
+            return "/movie/\(movie_id)/credits"
         }
     }
     

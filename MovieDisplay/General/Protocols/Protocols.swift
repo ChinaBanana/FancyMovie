@@ -23,10 +23,19 @@ protocol BaseViewModel {
 }
 
 protocol BaseModel:Publishable {
-    init(_ dic:Dictionary<String, Any>)
+    init(_ dic:Dictionary<String, Any>?)
 }
 
 protocol BaseDicModelProtocl:BaseModel {
     static func modelArrOfDic(_ modelDic:Dictionary<String, Any>?) -> Array<BaseModel>
     static func modelArrOfDicArray(_ dicArray:Array<Dictionary<String, Any>>) -> Array<BaseModel>
+}
+
+protocol Layout {
+    var width:CGFloat { get set }
+    var height:CGFloat { get set }
+    var left:CGFloat { get set }
+    var top:CGFloat { get set }
+    var right:CGFloat { get set }
+    var bottom:CGFloat { get set }
 }

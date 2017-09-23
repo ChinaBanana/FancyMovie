@@ -42,7 +42,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
             nameLabel.snp.remakeConstraints({ (remake) in
                 remake.left.bottom.equalTo(self.contentView)
                 remake.height.equalTo(30)
-                remake.width.equalTo(text.widthWithFont(self.nameLabel.font) + 20)
+                remake.width.equalTo(text.widthWithLimit(CGSize.init(width: kScreenWidth - 40, height: 35), font: self.nameLabel.font) + 20)
             })
         }
     }

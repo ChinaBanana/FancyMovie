@@ -10,22 +10,20 @@ import UIKit
 
 extension String {
     
-    /**
-     Get the width with the string.
-     
-     - parameter font: The font.
-     
-     - returns: The string's width.
-     */
-    func widthWithFont(_ font : UIFont) -> CGFloat {
-        
+    func widthWithLimit(_ size:CGSize, font:UIFont) -> CGFloat {
+        return sizeWithLimit(size, font: font).width
+    }
+    
+    func heightWithLimit(_ size:CGSize, font:UIFont) -> CGFloat {
+        return sizeWithLimit(size, font: font).height
+    }
+    
+    func sizeWithLimit(_ size:CGSize, font:UIFont) -> CGSize {
         guard self.characters.count > 0 else {
-            return 0
+            return CGSize.zero
         }
-        
-        let size = CGSize.init(width: kScreenWidth - 40, height: 35)
         let text = self as NSString
-        let rect = text.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
-        return rect.size.width
+        let rect = text.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : font], context: nil)
+        return rect.size
     }
 }

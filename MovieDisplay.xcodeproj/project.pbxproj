@@ -30,8 +30,8 @@
 		8511EF5E1F67DE3D00485EDB /* Marco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511EF5D1F67DE3D00485EDB /* Marco.swift */; };
 		8511EF601F67E86500485EDB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511EF5F1F67E86500485EDB /* APIService.swift */; };
 		852404721F72125600318F74 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852404711F72125600318F74 /* UIView+extension.swift */; };
-		8525F3761F7253CC003E96A0 /* OverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525F3751F7253CC003E96A0 /* OverviewTableViewCell.swift */; };
 		8525F3781F727087003E96A0 /* ViewItemModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525F3771F727087003E96A0 /* ViewItemModels.swift */; };
+		8525F37A1F735D35003E96A0 /* LayoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525F3791F735D35003E96A0 /* LayoutModel.swift */; };
 		85D980391F70F90D001AF3F4 /* BasicUIScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D980371F70F90C001AF3F4 /* BasicUIScrollViewController.swift */; };
 		85E4EBDD1F6A2B200023ACBA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4EBDC1F6A2B200023ACBA /* Account.swift */; };
 		85E4EBDF1F6A2BAB0023ACBA /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4EBDE1F6A2BAB0023ACBA /* Files.swift */; };
@@ -90,8 +90,8 @@
 		8511EF5D1F67DE3D00485EDB /* Marco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marco.swift; sourceTree = "<group>"; };
 		8511EF5F1F67E86500485EDB /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		852404711F72125600318F74 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
-		8525F3751F7253CC003E96A0 /* OverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewCell.swift; sourceTree = "<group>"; };
 		8525F3771F727087003E96A0 /* ViewItemModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewItemModels.swift; sourceTree = "<group>"; };
+		8525F3791F735D35003E96A0 /* LayoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutModel.swift; sourceTree = "<group>"; };
 		85D980371F70F90C001AF3F4 /* BasicUIScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicUIScrollViewController.swift; sourceTree = "<group>"; };
 		85E4EBDC1F6A2B200023ACBA /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		85E4EBDE1F6A2BAB0023ACBA /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
@@ -337,6 +337,7 @@
 			children = (
 				85E4EBFB1F6A6E8D0023ACBA /* DiscoverDataModels.swift */,
 				8525F3771F727087003E96A0 /* ViewItemModels.swift */,
+				8525F3791F735D35003E96A0 /* LayoutModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -348,7 +349,6 @@
 				85E4EC041F6B85060023ACBA /* DiscoverTableViewCell.swift */,
 				39934AEC1F6CA6A3000EFC36 /* ItemListCollectionViewCell.swift */,
 				3956EE751F6EA76200A7C70B /* ItemListTableViewCell.swift */,
-				8525F3751F7253CC003E96A0 /* OverviewTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -598,12 +598,12 @@
 				85D980391F70F90D001AF3F4 /* BasicUIScrollViewController.swift in Sources */,
 				85E4EBFE1F6B611B0023ACBA /* DiscoverCollectionViewCell.swift in Sources */,
 				8511EF521F67D19300485EDB /* AppDelegate.swift in Sources */,
-				8525F3761F7253CC003E96A0 /* OverviewTableViewCell.swift in Sources */,
 				85E4EBF21F6A6AAE0023ACBA /* MyTMDbViewController.swift in Sources */,
 				85E4EBE21F6A54670023ACBA /* WebViewController.swift in Sources */,
 				39934B1E1F6E074C000EFC36 /* SearchModels.swift in Sources */,
 				39934B0D1F6E04AD000EFC36 /* DiscoverTableViewCellViewModel.swift in Sources */,
 				39F6C9B71F6EA9170046B98C /* ItemListTableViewCellViewModel.swift in Sources */,
+				8525F37A1F735D35003E96A0 /* LayoutModel.swift in Sources */,
 				85FF5C221F6901E700AEB846 /* ProgressView.swift in Sources */,
 				85E4EC001F6B64780023ACBA /* ImageUrl.swift in Sources */,
 			);

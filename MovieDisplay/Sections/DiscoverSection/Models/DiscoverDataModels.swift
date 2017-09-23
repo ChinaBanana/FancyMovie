@@ -24,32 +24,30 @@ struct MovieItem : BaseDicModelProtocl {
     var overview:String?
     var release_date:String?
     
-    init(_ dic:Dictionary<String, Any>) {
-        vote_count = dic["vote_count"] as? Int
-        vote_average = dic["vote_average"] as? Int
-        id = dic["id"] as? Int
-        video = dic["video"] as? Bool
-        title = dic["title"] as? String
-        popularity = dic["popularity"] as? Int
-        poster_path = dic["poster_path"] as? String
-        original_title = dic["original_title"] as? String
-        original_language = dic["original_language"] as? String
-        genre_ids = dic["genre_ids"] as? Array<Int>
-        backdrop_path = dic["backdrop_path"] as? String
-        adult = dic["adult"] as? Bool
-        overview = dic["overview"] as? String
-        release_date = dic["release_date"] as? String
+    init(_ datas:Dictionary<String, Any>?) {
+        if let dic = datas {
+            vote_count = dic["vote_count"] as? Int
+            vote_average = dic["vote_average"] as? Int
+            id = dic["id"] as? Int
+            video = dic["video"] as? Bool
+            title = dic["title"] as? String
+            popularity = dic["popularity"] as? Int
+            poster_path = dic["poster_path"] as? String
+            original_title = dic["original_title"] as? String
+            original_language = dic["original_language"] as? String
+            genre_ids = dic["genre_ids"] as? Array<Int>
+            backdrop_path = dic["backdrop_path"] as? String
+            adult = dic["adult"] as? Bool
+            overview = dic["overview"] as? String
+            release_date = dic["release_date"] as? String
+        }
     }
     
     static func modelArrOfDic(_ modelDic:Dictionary<String, Any>?) -> Array<BaseModel> {
-        var modelArr = [BaseModel]()
-        if let dic = modelDic {
-            let items = dic["results"] as? Array<Dictionary<String, Any>>
-            if let itemData = items {
-                modelArr.append(contentsOf: modelArrOfDicArray(itemData))
-            }
+        if let itemData = modelDic?["results"] as? Array<Dictionary<String, Any>> {
+            return modelArrOfDicArray(itemData)
         }
-        return modelArr
+        return [MovieItem]()
     }
     
     static func modelArrOfDicArray(_ dicArray:Array<Dictionary<String, Any>>) -> Array<BaseModel> {
@@ -88,33 +86,37 @@ struct MovieDetailItem :BaseModel {
     var video:Bool?
     var vote_average:Int?
     var vote_count:Int?
-    init(_ dic: Dictionary<String, Any>?) {
-        adult = dic["adult"] as? Bool
-        backdrop_path = dic["backdrop_path"] as? String
-        belongs_to_collection = dic["belongs_to_collection"] as? Array
-        budget = dic["budget"] as? Int
-        genres = dic["genres"] as? Array
-        id = dic["id"] as? Int
-        name = dic["name"] as? String
-        homepage = dic["homepage"] as? String
-        imdb_id = dic["imdb_id"] as? String
-        original_language = dic["original_language"] as? String
-        original_title = dic["original_title"] as? String
-        overview = dic["overview"] as? String
-        popularity = dic["popularity"] as? Int
-        poster_path = dic["poster_path"] as? String
-        production_companies = dic["production_companies"] as? Array
-        production_countries = dic["production_countries"] as? Array
-        release_date = dic["release_date"] as? String
-        revenue = dic["revenue"] as? Int
-        runtime = dic["runtime"] as? Int
-        spoken_languages = dic["spoken_languages"] as? Array
-        status = dic["status"] as? String
-        tagline = dic["tagline"] as? String
-        title = dic["title"] as? String
-        video = dic["video"] as? Bool
-        vote_average = dic["vote_average"] as? Int
-        vote_count = dic["vote_count"] as? Int
+    let layout:OverviewLayout
+    init(_ datas: Dictionary<String, Any>?) {
+        if let dic = datas {
+            adult = dic["adult"] as? Bool
+            backdrop_path = dic["backdrop_path"] as? String
+            belongs_to_collection = dic["belongs_to_collection"] as? Array
+            budget = dic["budget"] as? Int
+            genres = dic["genres"] as? Array
+            id = dic["id"] as? Int
+            name = dic["name"] as? String
+            homepage = dic["homepage"] as? String
+            imdb_id = dic["imdb_id"] as? String
+            original_language = dic["original_language"] as? String
+            original_title = dic["original_title"] as? String
+            overview = dic["overview"] as? String
+            popularity = dic["popularity"] as? Int
+            poster_path = dic["poster_path"] as? String
+            production_companies = dic["production_companies"] as? Array
+            production_countries = dic["production_countries"] as? Array
+            release_date = dic["release_date"] as? String
+            revenue = dic["revenue"] as? Int
+            runtime = dic["runtime"] as? Int
+            spoken_languages = dic["spoken_languages"] as? Array
+            status = dic["status"] as? String
+            tagline = dic["tagline"] as? String
+            title = dic["title"] as? String
+            video = dic["video"] as? Bool
+            vote_average = dic["vote_average"] as? Int
+            vote_count = dic["vote_count"] as? Int
+        }
+        layout = OverviewLayout.init(datas)
     }
 }
 
@@ -125,26 +127,24 @@ struct PeopleItem : BaseDicModelProtocl {
     var known_for:Array<BaseModel>?
     var name:String?
     var popularity:Int?
-    init(_ dic:Dictionary<String,Any>) {
-        profile_path = dic["profile_path"] as? String
-        adult = dic["adult"] as? Bool
-        id = dic["id"] as? Int
-        name = dic["name"] as? String
-        popularity = dic["popularity"] as? Int
-        if let knownForList = dic["known_for"] as? Array<Dictionary<String, Any>> {
-            known_for = MovieItem.modelArrOfDicArray(knownForList)
+    init(_ datas:Dictionary<String,Any>?) {
+        if let dic = datas {
+            profile_path = dic["profile_path"] as? String
+            adult = dic["adult"] as? Bool
+            id = dic["id"] as? Int
+            name = dic["name"] as? String
+            popularity = dic["popularity"] as? Int
+            if let knownForList = dic["known_for"] as? Array<Dictionary<String, Any>> {
+                known_for = MovieItem.modelArrOfDicArray(knownForList)
+            }
         }
     }
     
     static func modelArrOfDic(_ modelDic: Dictionary<String, Any>?) -> Array<BaseModel> {
-        var responseArr = [BaseModel]()
-        if let dic = modelDic {
-            let items = dic["results"] as? Array<Dictionary<String, Any>>
-            if let itemData = items {
-                responseArr.append(contentsOf: modelArrOfDicArray(itemData))
-            }
+        if let itemData = modelDic?["results"] as? Array<Dictionary<String, Any>> {
+            return modelArrOfDicArray(itemData)
         }
-        return responseArr
+        return [BaseModel]()
     }
     
     static func modelArrOfDicArray(_ dicArray: Array<Dictionary<String, Any>>) -> Array<BaseModel> {
@@ -156,6 +156,83 @@ struct PeopleItem : BaseDicModelProtocl {
     }
 }
 
+struct CastItem : BaseDicModelProtocl {
+    
+    var cast_id:Int?
+    var character:String?
+    var credit_id:String?
+    var gender:Int?
+    var id:Int?
+    var name:String?
+    var order:Int?
+    var profile_path:String?
+    
+    init(_ dic: Dictionary<String, Any>?) {
+        if let datas = dic{
+            cast_id = datas["cast_id"] as? Int
+            character = datas["character"] as? String
+            credit_id = datas["credit_id"] as? String
+            gender = datas["gender"] as? Int
+            id = datas["id"] as? Int
+            name = datas["name"] as? String
+            order = datas["order"] as? Int
+            profile_path = datas["profile_path"] as? String
+        }
+    }
+    
+    static func modelArrOfDic(_ modelDic: Dictionary<String, Any>?) -> Array<BaseModel> {
+        if let casts = modelDic?["cast"] as? Array<Dictionary<String, Any>> {
+            return modelArrOfDicArray(casts)
+        }
+        return [CastItem]()
+    }
+    
+    static func modelArrOfDicArray(_ dicArray: Array<Dictionary<String, Any>>) -> Array<BaseModel> {
+        var modelArr = [CastItem]()
+        for item in dicArray {
+            modelArr.append(CastItem.init(item))
+        }
+        return modelArr
+    }
+}
+
+struct CrewItem : BaseDicModelProtocl {
+    
+    var credit_id:String?
+    var department:String?
+    var gender:Int?
+    var id:Int?
+    var job:String?
+    var name:String?
+    var profile_path:String?
+    
+    init(_ dic: Dictionary<String, Any>?) {
+        if let data = dic{
+            credit_id = data["credit_id"] as? String
+            department = data["department"] as? String
+            gender = data["gender"] as? Int
+            id = data["id"] as? Int
+            job = data["job"] as? String
+            name = data["name"] as? String
+            profile_path = data["profile_path"] as? String
+        }
+    }
+    
+    static func modelArrOfDic(_ modelDic: Dictionary<String, Any>?) -> Array<BaseModel> {
+        if let dicArr = modelDic?["crew"] as? Array<Dictionary<String, Any>> {
+            return modelArrOfDicArray(dicArr)
+        }
+        return [CrewItem]()
+    }
+    
+    static func modelArrOfDicArray(_ dicArray: Array<Dictionary<String, Any>>) -> Array<BaseModel> {
+        var modelArr = [CrewItem]()
+        for item in dicArray {
+            modelArr.append(CrewItem.init(item))
+        }
+        return modelArr
+    }
+}
 
 
 
