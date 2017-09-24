@@ -33,6 +33,6 @@ class PeopleDetailViewModel {
                 case .completed:
                     break
                 }
-        }.addDisposableTo(NavigatorService.disposeBag)
+        }.addDisposableTo(disposeBag)
     }
 }

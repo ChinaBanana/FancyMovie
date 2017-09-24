@@ -37,8 +37,8 @@ class APIService : BaseService{
     }
     
     // 封装订阅操作
-    public class func subscribe(_ condition:@escaping(_ item:Publishable) -> Bool, handler:@escaping(_ element:Publishable)->()) {
-        commonSubject.filter({ (item) -> Bool in
+    public class func subscribe(_ condition:@escaping(_ item:Publishable) -> Bool, handler:@escaping(_ element:Publishable)->()) -> Disposable{
+        return commonSubject.filter({ (item) -> Bool in
             return condition(item)
         }).subscribe { (event) in
             switch event {
@@ -51,7 +51,54 @@ class APIService : BaseService{
             case .completed:
                 break
             }
-        }.addDisposableTo(disposeBag)
+        }
+    }
+    
+    // 根据需要的次数来订阅
+    public class func subscribe(_ take:Int?, handler:@escaping (_ element:Publishable)->()) -> Disposable{
+        if let num = take {
+            return commonSubject.take(num).subscribe({ (event) in
+                switch event {
+                case .next(let element):
+                    handler(element)
+                    break
+                case .error(let error):
+                    debugPrint("Error on \(event) : \(error)")
+                    break
+                case .completed:
+                    break
+                }
+            })
+        }
+        return commonSubject.subscribe({ (event) in
+                switch event {
+                case .next(let element):
+                    handler(element)
+                    break
+                case .error(let error):
+                    debugPrint("Error on \(event) : \(error)")
+                    break
+                case .completed:
+                    break
+                }
+            })
+    }
+    
+    public class func subscribe(_ filter:@escaping(_ item:Publishable) -> Bool, take:Int?, handler:@escaping(_ element:Publishable) -> ()) -> Disposable {
+        return commonSubject.filter { (item) -> Bool in
+            return filter(item)
+            }.take(take ?? 0).subscribe { (event) in
+                switch event {
+                case .next(let element ):
+                    handler(element)
+                    break
+                case .error(let error):
+                    debugPrint(error)
+                    break
+                case .completed:
+                    break
+                }
+        }
     }
     
     // 获取token, 获取到token后需要加载webView对token进行授权，授权后获取session_id
@@ -169,6 +216,7 @@ enum API {
     case topRatedMovie
     case upcomingMovie
     case playingMovie
+    /// 下面这部分没有解耦的必要，这里有点鸡肋，像是为了解耦而解耦
     case getSimilar(Int)
     case getMovieDetail(Int)
     case getVideos(Int)

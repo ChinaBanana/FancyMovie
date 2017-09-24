@@ -96,8 +96,7 @@ class MovieDetailViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! DiscoverTableViewCell
         if tableView == similarTableView {
-            let item = DiscoverCellItem.init("Movies", list: viewModel.similarMovies)
-            cell.configContenViewWith(item)
+            cell.configContenViewWith(viewModel.similarMoviesItem)
         }else if tableView == peopleTableView {
             switch indexPath.row {
             case 0:

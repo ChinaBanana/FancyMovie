@@ -103,8 +103,8 @@ class DiscoverTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         viewModel.navigateToMovieDetail(indexPath.row)
     }
     
-    func configContenViewWith(_ item:DiscoverCellItem) -> () {
-        nameLabel.text = item.name
+    func configContenViewWith(_ item:DiscoverCellItem?) -> () {
+        nameLabel.text = item?.name
         viewModel.contentItem = item
         movieListView.reloadData()
     }

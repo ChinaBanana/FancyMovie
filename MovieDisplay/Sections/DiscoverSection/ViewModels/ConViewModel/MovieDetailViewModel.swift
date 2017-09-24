@@ -19,19 +19,14 @@ class MovieDetailViewModel {
     
     var movieItem:MovieItem?
     var movieDetailItem:MovieDetailItem?
-    var similarMovies:Array<BaseModel> = [BaseModel]()
+    var similarMoviesItem:DiscoverCellItem?
     var peoplesViewItem:PeopleOfMovieDetailItem?
     
     let refreshSubject = PublishSubject<ReloadType>()
     let disposeBag = DisposeBag.init()
     
     init() {
-        NavigatorService.publishSubject.filter { (model) -> Bool in
-            if let _ = model as? MovieItem{
-                return true
-            }
-            return false
-            }.subscribe { (event) in
+        NavigatorService.publishSubject.take(1).subscribe { (event) in
                 switch event {
                 case .next(let movieItem):
                     self.movieItem = movieItem as? MovieItem
@@ -47,12 +42,13 @@ class MovieDetailViewModel {
                 case .completed:
                     break
                 }
-        }.addDisposableTo(NavigatorService.disposeBag)
+        }.addDisposableTo(disposeBag)
         
-        APIService.similarMovieSubject.subscribe { (event) in
+        // SimilarTableView Data
+        APIService.similarMovieSubject.take(1).subscribe { (event) in
             switch event {
             case .next(let movieArr):
-                self.similarMovies.append(contentsOf: movieArr)
+                self.similarMoviesItem = DiscoverCellItem.init("Movies", list: movieArr)
                 self.refreshSubject.onNext(ReloadType.similarTableView)
                 break
             case .error(let error):
@@ -61,27 +57,39 @@ class MovieDetailViewModel {
             case .completed:
                 break
             }
-        }.addDisposableTo(APIService.disposeBag)
+        }.addDisposableTo(disposeBag)
         
-        // 有bug 啊
+        // Movie detail info
         APIService.subscribe({ (item) -> Bool in
             if let _ = item as? MovieDetailItem {
-                return true
+                return self.movieDetailItem == nil
             }
             return false
         }) { (movieDetail) in
             self.movieDetailItem = movieDetail as? MovieDetailItem
             self.refreshSubject.onNext(ReloadType.overview)
-        }
+        }.addDisposableTo(disposeBag)
         
+        // PeopleTableView Data
         APIService.subscribe({ (item) -> Bool in
             if let _ = item as? PeopleOfMovieDetailItem {
-                return true
+                return self.peoplesViewItem == nil
             }
             return false
         }) { (peoples) in
             self.peoplesViewItem = peoples as? PeopleOfMovieDetailItem
             self.refreshSubject.onNext(ReloadType.peopleTableView)
-        }
+        }.addDisposableTo(disposeBag)
+        
+        
+        
+        
+        // Trailers
+        APIService.subscribe({ (item) -> Bool in
+            
+            return false
+        }) { (videos) in
+            
+        }.addDisposableTo(disposeBag)
     }
 }
