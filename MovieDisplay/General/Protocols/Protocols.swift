@@ -13,6 +13,10 @@ protocol Publishable {
     
 }
 
+/**
+ 在service中使用了很多的Subject，但是由于Subject属于一个很强大的东西，大神们并不推荐大量使用这个元素
+ 
+ */
 protocol BaseService {
     static func publish(_ element:Publishable) -> ()
     

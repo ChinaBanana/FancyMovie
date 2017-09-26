@@ -17,12 +17,22 @@ class NavigatorService : BaseService{
     static let publishSubject = PublishSubject<Publishable>()
     static let disposeBag = DisposeBag.init()
     
+    static let videoPlayerCon = VideoPlayerViewController()
+    
     init() {
         
     }
     
     static func publish(_ element: Publishable) {
         publishSubject.onNext(element)
+    }
+    
+    static func playVideo(_ item:TrailerItem) {
+//        modelToPage(videoPlayerCon, animated: true) {
+//            
+//        }
+        navigateToPage(videoPlayerCon, animated: true)
+        publish(item)
     }
     
     // 导航到视图

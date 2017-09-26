@@ -101,3 +101,7 @@ extension UIView {
         self.addSubview(line)
     }
 }
+
+extension Array : Publishable {
+    
+}

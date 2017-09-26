@@ -25,6 +25,12 @@ class ItemListViewModel {
         }else if let people = discoverItem.array[index] as? PeopleItem {
             NavigatorService.navigateToPage(peopleDetailCon, animated: true)
             NavigatorService.publish(people)
+        }else if let cast = discoverItem.array[index] as? CastItem {
+            NavigatorService.navigateToPage(peopleDetailCon, animated: true)
+            NavigatorService.publish(cast)
+        }else if let crew = discoverItem.array[index] as? CrewItem {
+            NavigatorService.navigateToPage(peopleDetailCon, animated: true)
+            NavigatorService.publish(crew)
         }
     }
 }

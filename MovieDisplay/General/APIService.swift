@@ -54,7 +54,8 @@ class APIService : BaseService{
         }
     }
     
-    // 根据需要的次数来订阅
+    /// 根据需要的次数来订阅
+    /// 👇这俩方法有点鸡肋。。。。。
     public class func subscribe(_ take:Int?, handler:@escaping (_ element:Publishable)->()) -> Disposable{
         if let num = take {
             return commonSubject.take(num).subscribe({ (event) in
@@ -182,7 +183,7 @@ class APIService : BaseService{
                     APIService.publish(MovieDetailItem.init(dic))
                     break
                 case .getVideos(_):
-                    
+                    APIService.publish(TrailerItem.modelArrOfDic(dic) as! Publishable)
                     break
                 case .getMovieCredits(_):
                     APIService.publish(PeopleOfMovieDetailItem.init(dic))

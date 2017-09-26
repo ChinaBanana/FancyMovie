@@ -33,7 +33,6 @@ class MovieDetailViewModel {
                     APIService.request(.getSimilar((self.movieItem?.id)!))
                     APIService.request(.getMovieDetail((self.movieItem?.id)!))
                     APIService.request(.getMovieCredits((self.movieItem?.id)!))
-                    APIService.request(.getVideos((self.movieItem?.id)!))
                     self.refreshSubject.onNext(ReloadType.overview)
                     break
                 case.error(let error):

@@ -156,9 +156,17 @@ class MovieDetailViewController: UIViewController, UITableViewDelegate, UITableV
                     self.profileImageView.kf.setImage(with: ImageUrl.standardImage(movieItem?.poster_path, type: .poster))
                     self.nameLabel.text = movieItem?.original_title
                     self.dateLabel.text = movieItem?.release_date
+                    
                     if let movieDetail = self.viewModel.movieDetailItem {
                         let overviewContentView = MovieOverView.init(movieDetail)
                         self.overviewView.addSubview(overviewContentView)
+                        if let geners = movieDetail.genres {
+                            var types = String()
+                            for type in geners {
+                                types.append("\(type.name!) ")
+                            }
+                            self.typeLabel.text = types
+                        }
                     }
                     break
                 case .peopleTableView:
@@ -204,36 +212,20 @@ class MovieDetailViewController: UIViewController, UITableViewDelegate, UITableV
         backgroundView.contentSize = CGSize.init(width: kScreenWidth, height: tableViewContainer.bottom)
         super.updateViewConstraints()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-class MovieOverView: UIView {
+class MovieOverView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let plotLabel = UILabel()
     let summaryLable = UILabel()
     let trailersLabel = UILabel()
-    let trailersContentView = UIView()
+    var trailersContentView:UICollectionView!
     let movieFactsLabel = UILabel()
     let movieContentsLabel = UILabel()
+    var viewModel:MovieOverViewViewModel = MovieOverViewViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(plotLabel)
-        addSubview(summaryLable)
-        addSubview(trailersLabel)
-        addSubview(trailersContentView)
-        addSubview(movieFactsLabel)
-        addSubview(movieContentsLabel)
         
         plotLabel.textColor = UIColor.white
         plotLabel.font = UIFont.systemFont(ofSize: 16)
@@ -263,7 +255,16 @@ class MovieOverView: UIView {
         summaryLable.frame = item.layout.summaryLayout.frame
         
         trailersLabel.frame = item.layout.trailersLayout.frame
-        trailersContentView.frame = item.layout.trailersContentsLayout.frame
+        
+        let flowlayout = UICollectionViewFlowLayout.init()
+        flowlayout.itemSize = CGSize.init(width: (kScreenWidth - 30) / 3, height: item.layout.trailersContentsLayout.height)
+        flowlayout.scrollDirection = .horizontal
+        
+        trailersContentView = UICollectionView.init(frame: item.layout.trailersContentsLayout.frame, collectionViewLayout: flowlayout)
+        trailersContentView.delegate = self
+        trailersContentView.dataSource = self
+        trailersContentView.register(TrailsCollectionViewCell.self, forCellWithReuseIdentifier: "trailCell")
+        trailersContentView.backgroundColor = UIColor.clear
         trailersContentView.setScreenWidthBottomLine()
         
         movieFactsLabel.frame = item.layout.movieFactsLayout.frame
@@ -278,8 +279,39 @@ class MovieOverView: UIView {
         
         Revenue: $\(item.revenue ?? 0)
         """
-        
         summaryLable.setScreenWidthBottomLine()
+        
+        addSubview(plotLabel)
+        addSubview(summaryLable)
+        addSubview(trailersLabel)
+        addSubview(trailersContentView)
+        addSubview(movieFactsLabel)
+        addSubview(movieContentsLabel)
+        
+        viewModel.refreshSubject.subscribe { (event) in
+            switch event {
+            case .next(_):
+                self.trailersContentView.reloadData()
+                break
+            default:
+                break
+            }
+        }.addDisposableTo(viewModel.disposeBag)
+        viewModel.request(item.id!)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "trailCell", for: indexPath) as! TrailsCollectionViewCell
+        cell.configContents(viewModel.trailersArr?[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.trailersArr?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.playVideo(indexPath.row)
     }
     
     required init?(coder aDecoder: NSCoder) {

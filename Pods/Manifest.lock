@@ -13,6 +13,7 @@ PODS:
     - RxSwift (~> 3.3)
   - RxSwift (3.3.1)
   - SnapKit (3.2.0)
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
   - FDTemplateLayoutCell.swift
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - Moya/RxSwift
   - RxCocoa
   - SnapKit
+  - youtube-ios-player-helper (~> 0.1.6)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -30,7 +32,8 @@ SPEC CHECKSUMS:
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 718aaffb6d4247f77b0c6a8f9bae526b695e5762
+PODFILE CHECKSUM: ac324bb0ccece03fb140fdd8c6a9ebabe6bc73cf
 
 COCOAPODS: 1.2.0

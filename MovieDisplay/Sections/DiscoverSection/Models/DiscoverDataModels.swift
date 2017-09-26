@@ -64,7 +64,7 @@ struct MovieDetailItem :BaseModel {
     var backdrop_path:String?
     var belongs_to_collection:Array<Dictionary<String,Any>>?
     var budget:Int?
-    var genres:Array<Dictionary<String,Any>>?
+    var genres:Array<Genres>?
     var id:Int?
     var name:String?
     var homepage:String?
@@ -93,7 +93,7 @@ struct MovieDetailItem :BaseModel {
             backdrop_path = dic["backdrop_path"] as? String
             belongs_to_collection = dic["belongs_to_collection"] as? Array
             budget = dic["budget"] as? Int
-            genres = dic["genres"] as? Array
+            genres = Genres.modelArrOfDicArray(dic["genres"] as? Array)
             id = dic["id"] as? Int
             name = dic["name"] as? String
             homepage = dic["homepage"] as? String
@@ -117,6 +117,25 @@ struct MovieDetailItem :BaseModel {
             vote_count = dic["vote_count"] as? Int
         }
         layout = OverviewLayout.init(datas)
+    }
+}
+
+struct Genres : BaseModel {
+    var name:String?
+    var id:Int?
+    init(_ dic: Dictionary<String, Any>?) {
+        name = dic?["name"] as? String
+        id = dic?["id"] as? Int
+    }
+    
+    static func modelArrOfDicArray(_ dicArray: Array<Dictionary<String, Any>>?) -> Array<Genres> {
+        var responseArr = [Genres]()
+        if let datasArr = dicArray {
+            for item in datasArr {
+                responseArr.append(Genres.init(item))
+            }
+        }
+        return responseArr
     }
 }
 
@@ -229,6 +248,45 @@ struct CrewItem : BaseDicModelProtocl {
         var modelArr = [CrewItem]()
         for item in dicArray {
             modelArr.append(CrewItem.init(item))
+        }
+        return modelArr
+    }
+}
+
+struct TrailerItem : BaseDicModelProtocl {
+    var id:String?
+    var iso_639_1:String?
+    var iso_3166_1:String?
+    var key:String?
+    var name:String?
+    var site:String?
+    var size:Int?
+    var type:String?
+
+    init(_ dic: Dictionary<String, Any>?) {
+        if let data = dic {
+            id = data["id"] as? String
+            iso_639_1 = data["iso_639_1"] as? String
+            iso_3166_1 = data["iso_3166_1"] as? String
+            key = data["key"] as? String
+            name = data["name"] as? String
+            site = data["site"] as? String
+            size = data["size"] as? Int
+            type = data["type"] as? String
+        }
+    }
+    
+    static func modelArrOfDic(_ modelDic: Dictionary<String, Any>?) -> Array<BaseModel> {
+        if let datas = modelDic?["results"] as? Array<Dictionary<String, Any>>{
+            return modelArrOfDicArray(datas)
+        }
+        return [TrailerItem]()
+    }
+    
+    static func modelArrOfDicArray(_ dicArray: Array<Dictionary<String, Any>>) -> Array<BaseModel> {
+        var modelArr = [TrailerItem]()
+        for item in dicArray {
+            modelArr.append(TrailerItem.init(item))
         }
         return modelArr
     }
