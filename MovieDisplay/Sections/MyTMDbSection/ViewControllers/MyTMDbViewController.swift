@@ -17,14 +17,13 @@ class MyTMDbViewController: UIViewController {
     private let accountTF = UITextField()
     private let pswTF = UITextField()
     private let loginBtn = UIButton()
-    private let disposeBag = DisposeBag.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         accountTF.rx.text.subscribe { (event) in
             debugPrint(event)
-        }.disposed(by: disposeBag)
+        }.disposed(by: viewModel.disposeBag)
         
         accountTF.borderStyle = .roundedRect
         accountTF.placeholder = "Account"
@@ -39,17 +38,23 @@ class MyTMDbViewController: UIViewController {
             return ((text.0?.characters.count)! >= 3 && (text.1?.characters.count)! >= 6)
         }.subscribe({ (event) in
             self.loginBtn.isEnabled = event.element!
-        }).addDisposableTo(disposeBag)
+        }).addDisposableTo(viewModel.disposeBag)
         
         // ViewModel 绑定UI
         viewModel.validateSubject.subscribe { (event) in
             debugPrint(event)
-        }.addDisposableTo(disposeBag)
+        }.addDisposableTo(viewModel.disposeBag)
         
         // 绑定logBtn点击事件
         loginBtn.rx.tap.subscribe { (event) in
-           self.viewModel.validateUserName(self.accountTF.text)
-        }.addDisposableTo(disposeBag)
+            switch event {
+            case .next(_):
+                self.viewModel.loginAccount(self.accountTF.text, password: self.pswTF.text)
+                break;
+            default:
+                break;
+            }
+        }.addDisposableTo(viewModel.disposeBag)
         
         view.addSubview(accountTF)
         view.addSubview(pswTF)

@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import FDTemplateLayoutCell_swift
 
 class MovieDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate{
     

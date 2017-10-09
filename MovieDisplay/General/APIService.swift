@@ -123,7 +123,7 @@ class APIService : BaseService{
             case .completed:
                 break
             }
-        }.addDisposableTo(disposeBag)
+            }.addDisposableTo(disposeBag)
     }
     
     // 获取Session
@@ -183,7 +183,7 @@ class APIService : BaseService{
                     APIService.publish(MovieDetailItem.init(dic))
                     break
                 case .getVideos(_):
-                    APIService.publish(TrailerItem.modelArrOfDic(dic) as! Publishable)
+                    APIService.publish(TrailerItem.modelArrOfDic(dic))
                     break
                 case .getMovieCredits(_):
                     APIService.publish(PeopleOfMovieDetailItem.init(dic))
@@ -208,7 +208,7 @@ enum API {
     case session
     // 登录，官方不推荐使用此方法
     // 参数：api_key/username/password/request_token
-    case signUp(String, String)
+    case signUp(String, String, String)
     case signUpAsGuast
     // Discover
     case discover
@@ -239,7 +239,7 @@ extension API:TargetType {
             return "/authentication/token/new"
         case .session:
             return "/authentication/session/new"
-        case .signUp(_, _):
+        case .signUp(_, _, _):
             return "/authentication/token/validate_with_login"
         case .signUpAsGuast:
             return "/authentication/guest_session/new"
@@ -279,6 +279,12 @@ extension API:TargetType {
                         "request_token": aToken]
             }
             return ["api_key": APIKey]
+        case .signUp(let username, let password, let token):
+            return [
+                "api_key"  : APIKey,
+                "username" : username,
+                "password" : password,
+                "request_token" : token]
         default:
             return ["api_key": APIKey]
         }

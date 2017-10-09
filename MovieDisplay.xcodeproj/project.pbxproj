@@ -36,7 +36,6 @@
 		853A78CC1F78E43F0020E3CB /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A78CB1F78E43F0020E3CB /* VideoPlayerViewModel.swift */; };
 		853A78CE1F78E6000020E3CB /* MovieOverViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A78CD1F78E6000020E3CB /* MovieOverViewViewModel.swift */; };
 		853A78D01F78E8140020E3CB /* TrailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A78CF1F78E8140020E3CB /* TrailsCollectionViewCell.swift */; };
-		85D980391F70F90D001AF3F4 /* BasicUIScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D980371F70F90C001AF3F4 /* BasicUIScrollViewController.swift */; };
 		85E4EBDD1F6A2B200023ACBA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4EBDC1F6A2B200023ACBA /* Account.swift */; };
 		85E4EBDF1F6A2BAB0023ACBA /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4EBDE1F6A2BAB0023ACBA /* Files.swift */; };
 		85E4EBE21F6A54670023ACBA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4EBE11F6A54670023ACBA /* WebViewController.swift */; };
@@ -100,7 +99,6 @@
 		853A78CB1F78E43F0020E3CB /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewModel.swift; sourceTree = "<group>"; };
 		853A78CD1F78E6000020E3CB /* MovieOverViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverViewViewModel.swift; sourceTree = "<group>"; };
 		853A78CF1F78E8140020E3CB /* TrailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		85D980371F70F90C001AF3F4 /* BasicUIScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicUIScrollViewController.swift; sourceTree = "<group>"; };
 		85E4EBDC1F6A2B200023ACBA /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		85E4EBDE1F6A2BAB0023ACBA /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		85E4EBE11F6A54670023ACBA /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -329,7 +327,6 @@
 			children = (
 				8511EF511F67D19300485EDB /* AppDelegate.swift */,
 				8511EF531F67D1BB00485EDB /* RootViewController.swift */,
-				85D980371F70F90C001AF3F4 /* BasicUIScrollViewController.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -610,7 +607,6 @@
 				85E4EBF81F6A6ABF0023ACBA /* SearchViewController.swift in Sources */,
 				3956EE761F6EA76200A7C70B /* ItemListTableViewCell.swift in Sources */,
 				853A78D01F78E8140020E3CB /* TrailsCollectionViewCell.swift in Sources */,
-				85D980391F70F90D001AF3F4 /* BasicUIScrollViewController.swift in Sources */,
 				85E4EBFE1F6B611B0023ACBA /* DiscoverCollectionViewCell.swift in Sources */,
 				8511EF521F67D19300485EDB /* AppDelegate.swift in Sources */,
 				85E4EBF21F6A6AAE0023ACBA /* MyTMDbViewController.swift in Sources */,

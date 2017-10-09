@@ -29,7 +29,7 @@ class MyTMDbViewModel {
         }
     }
     
-    public func loginAccount(_ account:String?, password:String?) -> Observable<Bool> {
-        return Observable.just(true)
+    public func loginAccount(_ account:String?, password:String?) -> () {
+        
     }
 }

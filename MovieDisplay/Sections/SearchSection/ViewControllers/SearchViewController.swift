@@ -19,7 +19,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
         // Do any additional setup after loading the view.
         searchCon = UISearchController.init(searchResultsController: nil)
         searchCon.searchResultsUpdater = self
-        
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchCon
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,12 +33,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
     
     func updateSearchResults(for searchController: UISearchController) {
         
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        NavigatorService.modelToPage(searchCon, animated: true) {
-            
-        }
     }
 
     /*
